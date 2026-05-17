@@ -1,0 +1,56 @@
+.theme-classic {
+  /* destructive */
+  --color-destructive-key: var(--razzmatazz-key);
+  --color-destructive-50: var(--razzmatazz-50);
+  --color-destructive-100: var(--razzmatazz-100);
+  --color-destructive-200: var(--razzmatazz-200);
+  --color-destructive-300: var(--razzmatazz-300);
+  --color-destructive-400: var(--razzmatazz-400);
+  --color-destructive-500: var(--razzmatazz-500);
+  --color-destructive-600: var(--razzmatazz-600);
+  --color-destructive-700: var(--razzmatazz-700);
+  --color-destructive-800: var(--razzmatazz-800);
+  --color-destructive-900: var(--razzmatazz-900);
+  --color-destructive-950: var(--razzmatazz-950);
+
+  /* success */
+  --color-success-key: var(--seaGreen-key);
+  --color-success-50: var(--seaGreen-50);
+  --color-success-100: var(--seaGreen-100);
+  --color-success-200: var(--seaGreen-200);
+  --color-success-300: var(--seaGreen-300);
+  --color-success-400: var(--seaGreen-400);
+  --color-success-500: var(--seaGreen-500);
+  --color-success-600: var(--seaGreen-600);
+  --color-success-700: var(--seaGreen-700);
+  --color-success-800: var(--seaGreen-800);
+  --color-success-900: var(--seaGreen-900);
+  --color-success-950: var(--seaGreen-950);
+
+  /* warning */
+  --color-warning-key: var(--sun-key);
+  --color-warning-50: var(--sun-50);
+  --color-warning-100: var(--sun-100);
+  --color-warning-200: var(--sun-200);
+  --color-warning-300: var(--sun-300);
+  --color-warning-400: var(--sun-400);
+  --color-warning-500: var(--sun-500);
+  --color-warning-600: var(--sun-600);
+  --color-warning-700: var(--sun-700);
+  --color-warning-800: var(--sun-800);
+  --color-warning-900: var(--sun-900);
+
+  /* info */
+  --color-info-key: var(--azure-radiance-key);
+  --color-info-50: var(--azure-radiance-50);
+  --color-info-100: var(--azure-radiance-100);
+  --color-info-200: var(--azure-radiance-200);
+  --color-info-300: var(--azure-radiance-300);
+  --color-info-400: var(--azure-radiance-400);
+  --color-info-500: var(--azure-radiance-500);
+  --color-info-600: var(--azure-radiance-600);
+  --color-info-700: var(--azure-radiance-700);
+  --color-info-800: var(--azure-radiance-800);
+  --color-info-900: var(--azure-radiance-900);
+  --color-info-950: var(--azure-radiance-950);
+}

@@ -1,0 +1,2348 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Shop Backend API",
+    "version": "1.0.0",
+    "description": "API Documentation for Shop Backend"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000",
+      "description": "Local Development Server"
+    }
+    ,
+    {
+      "url" :"https://api.winki.ir",
+      "description" : "Production Server"
+    }
+  ],
+  "paths": {
+
+    "/api/v1/customer/profile": {
+      "get": {
+        "tags": ["پروفایل مشتری"],
+        "summary": "دریافت خلاصه پروفایل",
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "200": {"description": "موفق"},
+          "401": {"description": "احراز هویت نشده"}
+        }
+      },
+      "put": {
+        "tags": ["پروفایل مشتری"],
+        "summary": "ویرایش پروفایل",
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first_name": {"type": "string", "example": "علی"},
+                  "last_name": {"type": "string", "example": "احمدی"},
+                  "email": {"type": "string", "example": "ali@example.com"},
+                  "national_code": {"type": "string", "example": "1234567890"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      }
+    },
+    "/api/v1/customer/profile/update": {
+      "put": {
+        "tags": ["پروفایل مشتری"],
+        "summary": "بهروزرسانی پروفایل",
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first_name": {"type": "string", "example": "علی"},
+                  "last_name": {"type": "string", "example": "احمدی"},
+                  "email": {"type": "string", "example": "ali@example.com"},
+                  "national_code": {"type": "string", "example": "1234567890"},
+                  "card_number": {"type": "string", "example": "6037991234567890"},
+                  "iban": {"type": "string", "example": "IR123456789012345678901234"},
+                  "password": {"type": "string", "example": "Aa123456@"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      }
+    },
+    "/api/v1/customer/profile/info": {
+      "get": {
+        "tags": ["پروفایل مشتری"],
+        "summary": "اطلاعات کامل پروفایل",
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      }
+    },
+    "/api/v1/customer/profile/orders": {
+      "get": {
+        "tags": ["پروفایل مشتری"],
+        "summary": "لیست سفارشات",
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      }
+    },
+    "/api/v1/customer/profile/orders/{id}": {
+      "get": {
+        "tags": ["پروفایل مشتری"],
+        "summary": "جزئیات سفارش",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      }
+    },
+    "/api/v1/customer/addresses": {
+      "get": {
+        "tags": ["آدرس مشتری"],
+        "summary": "لیست آدرسها",
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      },
+      "post": {
+        "tags": ["آدرس مشتری"],
+        "summary": "ایجاد آدرس",
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "province", "city", "address", "postal_code", "receiver_name", "receiver_mobile"],
+                "properties": {
+                  "title": {"type": "string", "example": "منزل"},
+                  "province": {"type": "string", "example": "تهران"},
+                  "city": {"type": "string", "example": "تهران"},
+                  "address": {"type": "string", "example": "خیابان ولیعصر"},
+                  "postal_code": {"type": "string", "example": "1234567890"},
+                  "receiver_name": {"type": "string", "example": "علی احمدی"},
+                  "receiver_mobile": {"type": "string", "example": "09123456789"},
+                  "is_default": {"type": "boolean", "example": true}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "ایجاد شد"}
+        }
+      }
+    },
+    "/api/v1/customer/addresses/{id}": {
+      "get": {
+        "tags": ["آدرس مشتری"],
+        "summary": "جزئیات آدرس",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      },
+      "put": {
+        "tags": ["آدرس مشتری"],
+        "summary": "ویرایش آدرس",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {"type": "string"},
+                  "province": {"type": "string"},
+                  "city": {"type": "string"},
+                  "address": {"type": "string"},
+                  "postal_code": {"type": "string"},
+                  "receiver_name": {"type": "string"},
+                  "receiver_mobile": {"type": "string"},
+                  "is_default": {"type": "boolean"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      },
+      "delete": {
+        "tags": ["آدرس مشتری"],
+        "summary": "حذف آدرس",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {
+          "200": {"description": "حذف شد"}
+        }
+      }
+    },
+    "/api/v1/customer/favorites": {
+      "get": {
+        "tags": ["علاقه‌مندی‌ها"],
+        "summary": "لیست علاقه‌مندی‌ها",
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      }
+    },
+    "/api/v1/customer/favorites/{productId}": {
+      "post": {
+        "tags": ["علاقه‌مندی‌ها"],
+        "summary": "افزودن به علاقه‌مندی‌ها",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "productId", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {
+          "201": {"description": "اضافه شد"}
+        }
+      },
+      "delete": {
+        "tags": ["علاقه‌مندی‌ها"],
+        "summary": "حذف از علاقه‌مندی‌ها",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "productId", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {
+          "200": {"description": "حذف شد"}
+        }
+      }
+    },
+    "/api/v1/customer/reviews": {
+      "get": {
+        "tags": ["نظرات"],
+        "summary": "لیست نظرات",
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      },
+      "post": {
+        "tags": ["نظرات"],
+        "summary": "ثبت نظر",
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["product_id", "rating"],
+                "properties": {
+                  "product_id": {"type": "integer", "example": 1},
+                  "rating": {"type": "integer", "example": 5, "minimum": 1, "maximum": 5},
+                  "comment": {"type": "string", "example": "محصول عالی"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "ثبت شد"}
+        }
+      }
+    },
+    "/api/v1/customer/reviews/{id}": {
+      "put": {
+        "tags": ["نظرات"],
+        "summary": "ویرایش نظر",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rating": {"type": "integer", "minimum": 1, "maximum": 5},
+                  "comment": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "موفق"}
+        }
+      },
+      "delete": {
+        "tags": ["نظرات"],
+        "summary": "حذف نظر",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {
+          "200": {"description": "حذف شد"}
+        }
+      }
+    }
+,
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": ["احراز هویت"],
+        "summary": "ورود با ایمیل یا موبایل",
+        "description": "ورود کاربر با استفاده از ایمیل یا شماره موبایل و رمز عبور. سیستم به طور خودکار تشخیص میدهد ورودی ایمیل است یا موبایل",
+        "operationId": "login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["login", "password"],
+                "properties": {
+                  "login": {
+                    "type": "string",
+                    "example": "09123456789",
+                    "description": "ایمیل یا شماره موبایل (فارسی یا انگلیسی)"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "minLength": 6,
+                    "example": "password123",
+                    "description": "رمز عبور (حداقل 6 کاراکتر)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ورود موفق",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "Login successful"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "token": {"type": "string", "example": "1|sanctum_token_here"},
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "id": {"type": "integer", "example": 1},
+                            "first_name": {"type": "string", "example": "علی"},
+                            "last_name": {"type": "string", "example": "محمدی"},
+                            "mobile": {"type": "string", "example": "09123456789"},
+                            "email": {"type": "string", "example": "user@example.com"},
+                            "status": {"type": "string", "example": "active"},
+                            "is_active": {"type": "boolean", "example": true}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "خطای اعتبارسنجی",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "Validation failed"},
+                    "data": {"type": "null"}
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "اطلاعات ورود نامعتبر",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "Invalid credentials"},
+                    "data": {"type": "null"}
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "حساب کاربری غیرفعال",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "Account is inactive"},
+                    "data": {"type": "null"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "خطای سرور",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "Login failed"},
+                    "data": {"type": "null"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/otp/send": {
+      "post": {
+        "tags": ["احراز هویت"],
+        "summary": "ارسال کد OTP",
+        "description": "ارسال کد یکبار مصرف به شماره موبایل کاربر. اگر کاربر وجود نداشته باشد، ایجاد میشود. محدودیت: یک درخواست هر 2 دقیقه",
+        "operationId": "sendOtp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["mobile"],
+                "properties": {
+                  "mobile": {
+                    "type": "string",
+                    "pattern": "^09[0-9]{9}$",
+                    "example": "09123456789",
+                    "description": "شماره موبایل (فارسی یا انگلیسی)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "کد OTP با موفقیت ارسال شد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "OTP sent successfully"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "token": {"type": "string", "example": "akUG2cr1F1Ik0y5lFRzrEGvtcE4ZUjiKZq6LEFrnfPavFHP1iYkUlIWia7ehvrfq"},
+                        "code": {"type": "string", "example": "224382", "description": "فقط در محیط local"}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "خطای اعتبارسنجی",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "Validation failed"},
+                    "data": {"type": "null"}
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "درخواست زودهنگام - باید 2 دقیقه صبر کنید",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "Please wait 120 seconds before requesting a new OTP"},
+                    "data": {"type": "null"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/otp/verify": {
+      "post": {
+        "tags": ["احراز هویت"],
+        "summary": "تایید کد OTP",
+        "description": "تایید کد یکبار مصرف و دریافت توکن احراز هویت. محدودیت: 3 تلاش اشتباه",
+        "operationId": "verifyOtp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["token", "code"],
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "example": "akUG2cr1F1Ik0y5lFRzrEGvtcE4ZUjiKZq6LEFrnfPavFHP1iYkUlIWia7ehvrfq",
+                    "description": "توکن دریافتی از مرحله ارسال OTP"
+                  },
+                  "code": {
+                    "type": "string",
+                    "pattern": "^[0-9]{6}$",
+                    "example": "224382",
+                    "description": "کد 6 رقمی ارسال شده به موبایل"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ورود موفق",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "Login successful"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "token": {"type": "string", "example": "1|1UqXcvTYMSpm2lWz7AGIKdixWsxfB70R6JxvsaKl6a319472"},
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "id": {"type": "integer", "example": 2},
+                            "first_name": {"type": "string", "example": "مشتری"},
+                            "last_name": {"type": "string", "example": "09198461431"},
+                            "mobile": {"type": "string", "example": "09198461431"},
+                            "email": {"type": "string", "nullable": true, "example": null},
+                            "status": {"type": "string", "example": "pending"},
+                            "is_active": {"type": "boolean", "example": true}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "کد نامعتبر یا منقضی شده",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "Invalid or expired OTP"},
+                    "data": {"type": "null"}
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "تلاش بیش از حد - 3 بار کد اشتباه",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "Too many failed attempts. Please wait 120 seconds or request a new OTP"},
+                    "data": {"type": "null"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/v1/home/categories": {
+      "get": {
+        "tags": ["صفحه اصلی"],
+        "summary": "دریافت لیست دسته بندی ها",
+        "description": "دریافت لیست دسته بندی ها",
+        "operationId": "getCategories",
+        "responses": {
+          "200": {
+            "description": "لیست دسته بندی ها",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "categories": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "تکنولوژی"},
+                              "slug": {"type": "string", "example": "technology"},
+                              "image": {"type": "string", "example": "category.jpg"},
+                              "icon": {"type": "string", "example": "icon.svg"}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/home/layout": {
+      "get": {
+        "tags": ["صفحه اصلی"],
+        "summary": "دریافت لایت اصلی",
+        "description": "دریافت لایت اصلی",
+        "operationId": "getLayout",
+        "responses": {
+          "200": {
+            "description": "لایت اصلی",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "categories": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "تکنولوژی"},
+                              "slug": {"type": "string", "example": "technology"},
+                              "image": {"type": "string", "example": "category.jpg"},
+                              "icon": {"type": "string", "example": "icon.svg"}
+                            }
+                          }
+                        },
+                        "menus": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "منوی اصلی"},
+                              "location": {"type": "string", "example": "header"},
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {"type": "integer", "example": 1},
+                                    "menu_id": {"type": "integer", "example": 1},
+                                    "title": {"type": "string", "example": "خانه"},
+                                    "url": {"type": "string", "example": "/"},
+                                    "target": {"type": "string", "example": "_self"},
+                                    "icon": {"type": "string", "example": "home"},
+                                    "order": {"type": "integer", "example": 1}
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/home/menus": {
+      "get": {
+        "tags": ["صفحه اصلی"],
+        "summary": "دریافت لیست منوها",
+        "description": "دریافت لیست منوها",
+        "operationId": "getMenus",
+        "responses": {
+          "200": {
+            "description": "لیست منوها",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "menus": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "منوی اصلی"},
+                              "location": {"type": "string", "example": "header"},
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {"type": "integer", "example": 1},
+                                    "menu_id": {"type": "integer", "example": 1},
+                                    "title": {"type": "string", "example": "خانه"},
+                                    "url": {"type": "string", "example": "/"},
+                                    "target": {"type": "string", "example": "_self"},
+                                    "icon": {"type": "string", "example": "home"},
+                                    "order": {"type": "integer", "example": 1}
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/home/widgets": {
+      "get": {
+        "tags": ["صفحه اصلی"],
+        "summary": "دریافت لیست ویجتها",
+        "description": "دریافت لیست ویجتها",
+        "operationId": "getWidgets",
+        "responses": {
+          "200": {
+            "description": "لیست ویجتها",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "widgets": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "ویجت 1"},
+                              "key": {"type": "string", "example": "widget_1"},
+                              "type": {"type": "string", "example": "text"},
+                              "location": {"type": "string", "example": "home_top"},
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {"type": "integer", "example": 1},
+                                    "widget_id": {"type": "integer", "example": 1},
+                                    "title": {"type": "string", "example": "عنوان"},
+                                    "content": {"type": "string", "example": "محتوا"},
+                                    "order": {"type": "integer", "example": 1}
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/home/special-sales": {
+      "get": {
+        "tags": ["صفحه اصلی"],
+        "summary": "دریافت لیست فروش ویژه ها",
+        "description": "دریافت لیست فروش ویژه ها",
+        "operationId": "getSpecialSales",
+        "responses": {
+          "200": {
+            "description": "لیست فروش ویژه ها",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "special_sales": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "فروش ویژه 1"},
+                              "description": {"type": "string", "example": "توضیحات فروش ویژه 1"},
+                              "type": {"type": "string", "example": "product"},
+                              "discount_percentage": {"type": "number", "example": 15},
+                              "starts_at": {"type": "string", "example": "2026-02-09 08:00:00"},
+                              "ends_at": {"type": "string", "example": "2026-02-10 08:00:00"},
+                              "products": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {"type": "integer", "example": 1},
+                                    "title": {"type": "string", "example": "محصول 1"},
+                                    "slug": {"type": "string", "example": "product-1"},
+                                    "price": {"type": "number", "example": 1000000},
+                                    "image": {"type": "string", "example": "product.jpg"},
+                                    "custom_price": {"type": "number", "example": 850000}
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/home/most-viewed-products": {
+      "get": {
+        "tags": ["صفحه اصلی"],
+        "summary": "دریافت لیست محصولات پربازدید",
+        "description": "دریافت لیست محصولات پربازدید",
+        "operationId": "getMostViewedProducts",
+        "responses": {
+          "200": {
+            "description": "لیست محصولات پربازدید",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "products": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "محصول 1"},
+                              "slug": {"type": "string", "example": "product-1"},
+                              "price": {"type": "number", "example": 1000000},
+                              "image": {"type": "string", "example": "product.jpg"},
+                              "original_price": {"type": "number", "example": 1000000},
+                              "discount_percentage": {"type": "number", "example": 15}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/v1/home/most-liked-products": {
+      "get": {
+        "tags": ["صفحه اصلی"],
+        "summary": "دریافت لیست محصولات محبوب",
+        "description": "دریافت لیست محصولات محبوب",
+        "operationId": "getMostLikedProducts",
+        "responses": {
+          "200": {
+            "description": "لیست محصولات محبوب",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "products": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "محصول 1"},
+                              "slug": {"type": "string", "example": "product-1"},
+                              "price": {"type": "number", "example": 1000000},
+                              "image": {"type": "string", "example": "product.jpg"},
+                              "original_price": {"type": "number", "example": 1000000},
+                              "discount_percentage": {"type": "number", "example": 15}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/home/latest-posts": {
+      "get": {
+        "tags": ["صفحه اصلی"],
+        "summary": "دریافت لیست پست های اخیر",
+        "description": "دریافت لیست پست های اخیر",
+        "operationId": "getLatestPosts",
+        "responses": {
+          "200": {
+            "description": "لیست پست های اخیر",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "posts": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "عنوان پست"},
+                              "slug": {"type": "string", "example": "post-slug"},
+                              "summary": {"type": "string", "example": "خلاصه پست"},
+                              "image": {"type": "string", "example": "post.jpg"},
+                              "category": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {"type": "integer", "example": 1},
+                                  "title": {"type": "string", "example": "دسته بندی پست"},
+                                  "slug": {"type": "string", "example": "category-slug"}
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/home/settings": {
+      "get": {
+        "tags": ["صفحه اصلی"],
+        "summary": "دریافت تنظیمات صفحه اصلی",
+        "description": "دریافت تنظیمات صفحه اصلی",
+        "operationId": "getSettings",
+        "responses": {
+          "200": {
+            "description": "تنظیمات صفحه اصلی",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "settings": {
+                          "type": "object",
+                          "properties": {
+                            "logo": {"type": "string", "example": "logo.png"},
+                            "favicon": {"type": "string", "example": "favicon.png"},
+                            "description": {"type": "string", "example": "توضیحات صفحه اصلی"},
+                            "phone": {"type": "string", "example": "09123456789"},
+                            "email": {"type": "string", "example": "info@example.com"},
+                            "address": {"type": "string", "example": "تهران, ایران"},
+                            "instagram": {"type": "string", "example": "https://www.instagram.com/example"},
+                            "telegram": {"type": "string", "example": "https://t.me/example"},
+                            "whatsapp": {"type": "string", "example": "09123456789"},
+                            "badges": {"type": "array", "items": {"type": "string"}}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+
+    "/api/v1/products": {
+      "get": {
+        "tags": ["محصولات"],
+        "summary": "دریافت لیست محصولات",
+        "description": "دریافت لیست محصولات با فیلتر و جستجو",
+        "operationId": "getProducts",
+        "parameters": [
+          {"name": "category_id", "in": "query", "required": false, "schema": {"type": "integer", "example": 1}},
+          {"name": "brand_id", "in": "query", "required": false, "schema": {"type": "integer", "example": 1}},
+          {"name": "search", "in": "query", "required": false, "schema": {"type": "string", "example": "لپتاپ"}},
+          {"name": "sort", "in": "query", "required": false, "schema": {"type": "string", "enum": ["newest", "price_asc", "price_desc", "popular"]}},
+          {"name": "per_page", "in": "query", "required": false, "schema": {"type": "integer", "example": 20}}
+        ],
+        "responses": {
+          "200": {
+            "description": "لیست محصولات",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "products": {
+                          "type": "object",
+                          "properties": {
+                            "data": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {"type": "integer", "example": 1},
+                                  "title": {"type": "string", "example": "لپتاپ ایسوس"},
+                                  "slug": {"type": "string", "example": "laptop-asus"},
+                                  "price": {"type": "number", "example": 15000000},
+                                  "image": {"type": "string", "example": "product.jpg"},
+                                  "isFavorite": {"type": "boolean", "example": false}
+                                }
+                              }
+                            },
+                            "current_page": {"type": "integer", "example": 1},
+                            "last_page": {"type": "integer", "example": 5},
+                            "per_page": {"type": "integer", "example": 20},
+                            "total": {"type": "integer", "example": 100}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/product/{slug}": {
+      "get": {
+        "tags": ["محصولات"],
+        "summary": "دریافت جزئیات محصول",
+        "description": "دریافت اطلاعات کامل یک محصول شامل دسته‌بندی، برند، نویسنده، تنوع‌ها و محصولات مشابه",
+        "operationId": "getProductDetails",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "شناسه یکتای محصول",
+            "schema": {
+              "type": "string",
+              "example": "product-slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "عملیات موفق",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "محصول با موفقیت دریافت شد"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "product": {
+                          "type": "object",
+                          "properties": {
+                            "id": {"type": "integer", "example": 1},
+                            "title": {"type": "string", "example": "عنوان محصول"},
+                            "slug": {"type": "string", "example": "product-slug"},
+                            "summary": {"type": "string", "example": "خلاصه محصول"},
+                            "body": {"type": "string", "example": "توضیحات کامل محصول"},
+                            "image": {"type": "string", "example": "product.jpg"},
+                            "image_alt": {"type": "string", "example": "alt text"},
+                            "price": {"type": "number", "example": 1000000},
+                            "stock_status": {"type": "string", "example": "in_stock"},
+                            "sku": {"type": "string", "example": "SKU-123"},
+                            "status": {"type": "integer", "example": 1},
+                            "is_featured": {"type": "boolean", "example": true},
+                            "tags": {"type": "array", "items": {"type": "string"}},
+                            "rating": {"type": "number", "example": 4.5},
+                            "average_rating": {"type": "number", "example": 4.5},
+                            "review_count": {"type": "integer", "example": 10},
+                            "views": {"type": "integer", "example": 100},
+                            "likes": {"type": "integer", "example": 50},
+                            "wishlist_count": {"type": "integer", "example": 20},
+                            "purchase_count": {"type": "integer", "example": 30},
+                            "warranty": {"type": "string", "example": "1 year"},
+                            "delivery_time": {"type": "string", "example": "2-3 days"},
+                            "return_policy": {"type": "string", "example": "7 days"},
+                            "pros": {"type": "array", "items": {"type": "string"}},
+                            "cons": {"type": "array", "items": {"type": "string"}},
+                            "faq": {"type": "array", "items": {"type": "object"}},
+                            "attachments": {"type": "array", "items": {"type": "string"}},
+                            "custom_badges": {"type": "array", "items": {"type": "string"}},
+                            "meta_title": {"type": "string"},
+                            "meta_description": {"type": "string"},
+                            "meta_keywords": {"type": "string"},
+                            "category": {
+                              "type": "object",
+                              "properties": {
+                                "id": {"type": "integer"},
+                                "title": {"type": "string"},
+                                "slug": {"type": "string"}
+                              }
+                            },
+                            "brand": {
+                              "type": "object",
+                              "properties": {
+                                "id": {"type": "integer"},
+                                "name": {"type": "string"},
+                                "slug": {"type": "string"}
+                              }
+                            },
+                            "author": {
+                              "type": "object",
+                              "properties": {
+                                "id": {"type": "integer"},
+                                "first_name": {"type": "string"},
+                                "last_name": {"type": "string"}
+                              }
+                            },
+                            "variants": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {"type": "integer"},
+                                  "name": {"type": "string"},
+                                  "price": {"type": "number"},
+                                  "stock": {"type": "integer"}
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "similar_products": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer"},
+                              "title": {"type": "string"},
+                              "slug": {"type": "string"},
+                              "price": {"type": "number"},
+                              "image": {"type": "string"},
+                              "average_rating": {"type": "number"}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "محصول یافت نشد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "محصول یافت نشد"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "خطای سرور",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "خطا در دریافت اطلاعات محصول"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cart/add": {
+      "post": {
+        "tags": ["سبد خرید"],
+        "summary": "افزودن محصول به سبد خرید",
+        "description": "افزودن محصول به سبد خرید کاربر با امکان انتخاب متغیر محصول",
+        "operationId": "addToCart",
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["product_id", "quantity"],
+                "properties": {
+                  "product_id": {"type": "integer", "example": 1},
+                  "product_variant_id": {"type": "integer", "nullable": true, "example": 1},
+                  "quantity": {"type": "integer", "example": 1, "minimum": 1}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "محصول با موفقیت به سبد خرید اضافه شد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "محصول به سبد خرید اضافه شد"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "cart": {
+                          "type": "object",
+                          "properties": {
+                            "id": {"type": "integer", "example": 1},
+                            "total_items": {"type": "integer", "example": 3},
+                            "total_amount": {"type": "number", "example": 2500000}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "خطای اعتبارسنجی یا موجودی کافی نیست"},
+          "401": {"description": "کاربر احراز هویت نشده"},
+          "404": {"description": "محصول یافت نشد"}
+        }
+      }
+    },
+    "/api/v1/cart": {
+      "get": {
+        "tags": ["سبد خرید"],
+        "summary": "دریافت سبد خرید",
+        "description": "دریافت اطلاعات کامل سبد خرید کاربر",
+        "operationId": "getCart",
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "200": {
+            "description": "عملیات موفق",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "cart": {
+                          "type": "object",
+                          "properties": {
+                            "id": {"type": "integer", "example": 1},
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {"type": "integer", "example": 1},
+                                  "product_id": {"type": "integer", "example": 1},
+                                  "product_variant_id": {"type": "integer", "nullable": true, "example": 1},
+                                  "quantity": {"type": "integer", "example": 2},
+                                  "price": {"type": "number", "example": 500000},
+                                  "total": {"type": "number", "example": 1000000}
+                                }
+                              }
+                            },
+                            "total_items": {"type": "integer", "example": 3},
+                            "total_amount": {"type": "number", "example": 2500000}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {"description": "کاربر احراز هویت نشده"}
+        }
+      }
+    },
+    "/api/v1/cart/items/{id}": {
+      "put": {
+        "tags": ["سبد خرید"],
+        "summary": "بروزرسانی تعداد آیتم",
+        "operationId": "updateCartItem",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["quantity"],
+                "properties": {"quantity": {"type": "integer", "example": 5, "minimum": 1}}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "تعداد بروزرسانی شد"},
+          "400": {"description": "موجودی کافی نیست"},
+          "404": {"description": "آیتم یافت نشد"}
+        }
+      },
+      "delete": {
+        "tags": ["سبد خرید"],
+        "summary": "حذف آیتم از سبد",
+        "operationId": "removeCartItem",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "responses": {
+          "200": {"description": "آیتم حذف شد"},
+          "404": {"description": "آیتم یافت نشد"}
+        }
+      }
+    },
+    "/api/v1/cart/clear": {
+      "delete": {
+        "tags": ["سبد خرید"],
+        "summary": "خالی کردن سبد خرید",
+        "operationId": "clearCart",
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "200": {"description": "سبد خرید خالی شد"}
+        }
+      }
+    },
+    "/api/v1/cart/items/{id}/increment": {
+      "post": {
+        "tags": ["سبد خرید"],
+        "summary": "افزایش تعداد آیتم",
+        "operationId": "incrementCartItem",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {"quantity": {"type": "integer", "example": 1, "minimum": 1}}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "تعداد افزایش یافت"},
+          "400": {"description": "موجودی کافی نیست"}
+        }
+      }
+    },
+    "/api/v1/cart/items/{id}/decrement": {
+      "post": {
+        "tags": ["سبد خرید"],
+        "summary": "کاهش تعداد آیتم",
+        "operationId": "decrementCartItem",
+        "security": [{"bearerAuth": []}],
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "integer"}}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {"quantity": {"type": "integer", "example": 1, "minimum": 1}}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "تعداد کاهش یافت یا آیتم حذف شد"}
+        }
+      }
+    },
+    "/api/v1/faqs": {
+      "get": {
+        "tags": ["سوالات متداول"],
+        "summary": "دریافت لیست سوالات متداول",
+        "description": "دریافت سوالات متداول با فیلتر دستهبندی و جستجو",
+        "operationId": "getFaqs",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "description": "فیلتر بر اساس دستهبندی",
+            "schema": {
+              "type": "string",
+              "example": "general"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "جستجو در سوال و جواب",
+            "schema": {
+              "type": "string",
+              "example": "ثبت نام"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "لیست سوالات متداول",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "faqs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "question": {"type": "string", "example": "چگونه ثبت نام کنم؟"},
+                              "answer": {"type": "string", "example": "برای ثبت نام..."},
+                              "category": {"type": "string", "example": "general"}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/search": {
+      "get": {
+        "tags": ["جستجو"],
+        "summary": "جستجوی عمومی",
+        "description": "جستجو در محصولات، مقالات، برندها و دستهبندیها",
+        "operationId": "search",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "کلمه کلیدی جستجو",
+            "schema": {
+              "type": "string",
+              "example": "لپتاپ"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "نتایج جستجو",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "نتایج جستجو"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "products": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "لپتاپ ایسوس"},
+                              "slug": {"type": "string", "example": "laptop-asus"},
+                              "image": {"type": "string", "example": "/images/product.jpg"}
+                            }
+                          }
+                        },
+                        "posts": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "راهنمای خرید لپتاپ"},
+                              "slug": {"type": "string", "example": "laptop-guide"},
+                              "image": {"type": "string", "example": "/images/post.jpg"}
+                            }
+                          }
+                        },
+                        "brands": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "ایسوس"},
+                              "slug": {"type": "string", "example": "asus"}
+                            }
+                          }
+                        },
+                        "categories": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "title": {"type": "string", "example": "لپتاپ"},
+                              "slug": {"type": "string", "example": "laptop"},
+                              "image": {"type": "string", "example": "/images/category.jpg"}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "خطای اعتبارسنجی",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "لطفا کلمه کلیدی را وارد کنید"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/checkout": {
+      "post": {
+        "tags": ["سفارش"],
+        "summary": "ثبت سفارش از سبد خرید",
+        "description": "تبدیل سبد خرید به سفارش و فریز کردن موجودی",
+        "operationId": "checkout",
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["cart_id", "address_id"],
+                "properties": {
+                  "cart_id": {"type": "integer", "example": 1, "description": "شناسه سبد خرید"},
+                  "address_id": {"type": "integer", "example": 1, "description": "شناسه آدرس ارسال"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "سفارش با موفقیت ثبت شد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "سفارش با موفقیت ثبت شد"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "order_id": {"type": "integer", "example": 1},
+                        "tracking_code": {"type": "string", "example": "ORD-17123456789"},
+                        "total_amount": {"type": "number", "example": 1500000}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "سبد خرید خالی یا موجودی کافی نیست"},
+          "401": {"description": "کاربر احراز هویت نشده"}
+        }
+      }
+    },
+    "/api/v1/payment/create": {
+      "post": {
+        "tags": ["پرداخت"],
+        "summary": "ایجاد درخواست پرداخت",
+        "description": "ایجاد درخواست پرداخت برای سفارش",
+        "operationId": "createPayment",
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["order_id"],
+                "properties": {
+                  "order_id": {"type": "integer", "example": 1}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "درخواست پرداخت ایجاد شد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "درخواست پرداخت ایجاد شد"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "payment_id": {"type": "integer", "example": 1},
+                        "payment_url": {"type": "string", "example": "https://payment.zarinpal.com/pg/StartPay/A00000000000000000000000000123456789"}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "سفارش قبلا پرداخت شده"},
+          "403": {"description": "دسترسی غیرمجاز"}
+        }
+      }
+    },
+    "/api/v1/payment/verify": {
+      "get": {
+        "tags": ["پرداخت"],
+        "summary": "تایید پرداخت",
+        "description": "تایید پرداخت و بروزرسانی موجودی",
+        "operationId": "verifyPayment",
+        "parameters": [
+          {
+            "name": "Authority",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"}
+          },
+          {
+            "name": "Status",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "پرداخت با موفقیت انجام شد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "پرداخت با موفقیت انجام شد"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "order_id": {"type": "integer", "example": 1},
+                        "reference_id": {"type": "string", "example": "123456789"}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "پرداخت ناموفق"}
+        }
+      }
+    },
+    "/api/v1/contact": {
+      "post": {
+        "tags": ["تماس با ما"],
+        "summary": "ارسال پیام تماس",
+        "description": "ارسال پیام تماس با ما",
+        "operationId": "contactStore",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "mobile", "message"],
+                "properties": {
+                  "name": {"type": "string", "example": "علی محمدی"},
+                  "mobile": {"type": "string", "example": "09123456789"},
+                  "email": {"type": "string", "example": "user@example.com"},
+                  "subject": {"type": "string", "example": "موضوع پیام"},
+                  "message": {"type": "string", "example": "متن پیام"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "پیام با موفقیت ارسال شد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "پیام شما با موفقیت ارسال شد"}
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "خطای اعتبارسنجی"}
+        }
+      }
+    },
+    "/api/v1/newsletter/subscribe": {
+      "post": {
+        "tags": ["خبرنامه"],
+        "summary": "عضویت در خبرنامه",
+        "description": "ثبت ایمیل برای دریافت خبرنامه",
+        "operationId": "newsletterSubscribe",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email"],
+                "properties": {
+                  "email": {"type": "string", "example": "user@example.com"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "عضویت با موفقیت انجام شد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "عضویت شما با موفقیت انجام شد"}
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "ایمیل قبلا ثبت شده"}
+        }
+      }
+    },
+    "/api/v1/product/{slug}/gallery": {
+      "get": {
+        "tags": ["گالری محصول"],
+        "summary": "دریافت گالری تصاویر محصول",
+        "description": "دریافت لیست تصاویر گالری محصول",
+        "operationId": "getProductGallery",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "شناسه محصول",
+            "schema": {
+              "type": "string",
+              "example": "product-slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "لیست تصاویر گالری",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "gallery": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "image": {"type": "string", "example": "/images/product1.jpg"},
+                              "alt": {"type": "string", "example": "تصویر محصول"}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {"description": "محصول یافت نشد"}
+        }
+      }
+    },
+    "/api/v1/product/{slug}/reviews": {
+      "get": {
+        "tags": ["نظرات محصول"],
+        "summary": "دریافت نظرات محصول",
+        "description": "دریافت لیست نظرات تایید شده محصول",
+        "operationId": "getProductReviews",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "شناسه محصول",
+            "schema": {
+              "type": "string",
+              "example": "product-slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "لیست نظرات",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "reviews": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "rating": {"type": "integer", "example": 5},
+                              "comment": {"type": "string", "example": "محصول عالی"},
+                              "user": {
+                                "type": "object",
+                                "properties": {
+                                  "first_name": {"type": "string", "example": "علی"},
+                                  "last_name": {"type": "string", "example": "محمدی"}
+                                }
+                              },
+                              "created_at": {"type": "string", "example": "2026-02-16 10:00:00"}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {"description": "محصول یافت نشد"}
+        }
+      },
+      "post": {
+        "tags": ["نظرات محصول"],
+        "summary": "ثبت نظر برای محصول",
+        "description": "ثبت نظر جدید برای محصول",
+        "operationId": "storeProductReview",
+        "security": [{"bearerAuth": []}],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "شناسه محصول",
+            "schema": {
+              "type": "string",
+              "example": "product-slug"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["rating"],
+                "properties": {
+                  "rating": {"type": "integer", "example": 5, "minimum": 1, "maximum": 5},
+                  "comment": {"type": "string", "example": "محصول عالی"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "نظر با موفقیت ثبت شد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "نظر شما با موفقیت ثبت شد و پس از تایید نمایش داده خواهد شد"}
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "خطای اعتبارسنجی"},
+          "401": {"description": "احراز هویت نشده"},
+          "404": {"description": "محصول یافت نشد"}
+        }
+      }
+    },
+    "/api/v1/posts": {
+      "get": {
+        "tags": ["مقالات"],
+        "summary": "دریافت لیست مقالات",
+        "description": "دریافت لیست مقالات با فیلتر و جستجو",
+        "operationId": "getPosts",
+        "parameters": [
+          {"name": "category_id", "in": "query", "required": false, "schema": {"type": "integer", "example": 1}},
+          {"name": "search", "in": "query", "required": false, "schema": {"type": "string", "example": "آموزش"}},
+          {"name": "sort", "in": "query", "required": false, "schema": {"type": "string", "enum": ["newest", "popular", "oldest"]}},
+          {"name": "per_page", "in": "query", "required": false, "schema": {"type": "integer", "example": 20}}
+        ],
+        "responses": {
+          "200": {
+            "description": "لیست مقالات",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "posts": {
+                          "type": "object",
+                          "properties": {
+                            "data": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {"type": "integer", "example": 1},
+                                  "title": {"type": "string", "example": "آموزش لاراول"},
+                                  "slug": {"type": "string", "example": "laravel-tutorial"},
+                                  "summary": {"type": "string", "example": "توضیحات کوتاه"},
+                                  "image": {"type": "string", "example": "post.jpg"},
+                                  "views": {"type": "integer", "example": 150}
+                                }
+                              }
+                            },
+                            "current_page": {"type": "integer", "example": 1},
+                            "last_page": {"type": "integer", "example": 5},
+                            "per_page": {"type": "integer", "example": 20},
+                            "total": {"type": "integer", "example": 100}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/posts/{slug}/comments": {
+      "get": {
+        "tags": ["نظرات مقاله"],
+        "summary": "دریافت نظرات مقاله",
+        "description": "دریافت لیست نظرات تایید شده مقاله",
+        "operationId": "getPostComments",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "شناسه مقاله",
+            "schema": {
+              "type": "string",
+              "example": "post-slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "لیست نظرات",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "comments": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer", "example": 1},
+                              "comment": {"type": "string", "example": "مقاله عالی بود"},
+                              "user": {
+                                "type": "object",
+                                "properties": {
+                                  "first_name": {"type": "string", "example": "علی"},
+                                  "last_name": {"type": "string", "example": "محمدی"}
+                                }
+                              },
+                              "created_at": {"type": "string", "example": "2026-02-16 10:00:00"}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {"description": "مقاله یافت نشد"}
+        }
+      },
+      "post": {
+        "tags": ["نظرات مقاله"],
+        "summary": "ثبت نظر برای مقاله",
+        "description": "ثبت نظر جدید برای مقاله",
+        "operationId": "storePostComment",
+        "security": [{"bearerAuth": []}],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "شناسه مقاله",
+            "schema": {
+              "type": "string",
+              "example": "post-slug"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["comment"],
+                "properties": {
+                  "comment": {"type": "string", "example": "مقاله عالی بود"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "نظر با موفقیت ثبت شد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "نظر شما با موفقیت ثبت شد و پس از تایید نمایش داده خواهد شد"}
+                  }
+                }
+              }
+            }
+          },
+          "400": {"description": "خطای اعتبارسنجی"},
+          "401": {"description": "احراز هویت نشده"},
+          "404": {"description": "مقاله یافت نشد"}
+        }
+      }
+    },
+    "/api/v1/posts/{slug}": {
+      "get": {
+        "tags": ["وبلاگ"],
+        "summary": "دریافت جزئیات پست",
+        "description": "دریافت اطلاعات کامل یک پست وبلاگ شامل دسته‌بندی‌ها، نویسنده و پست‌های مشابه",
+        "operationId": "getPostDetails",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "شناسه یکتای پست",
+            "schema": {
+              "type": "string",
+              "example": "post-slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "عملیات موفق",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": true},
+                    "message": {"type": "string", "example": "پست با موفقیت دریافت شد"},
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "post": {
+                          "type": "object",
+                          "properties": {
+                            "id": {"type": "integer", "example": 1},
+                            "title": {"type": "string", "example": "عنوان پست"},
+                            "slug": {"type": "string", "example": "post-slug"},
+                            "summary": {"type": "string", "example": "خلاصه پست"},
+                            "body": {"type": "string", "example": "محتوای کامل پست"},
+                            "image": {"type": "string", "example": "post.jpg"},
+                            "image_alt": {"type": "string", "example": "alt text"},
+                            "status": {"type": "integer", "example": 1},
+                            "is_featured": {"type": "boolean", "example": true},
+                            "commentable": {"type": "boolean", "example": true},
+                            "tags": {"type": "array", "items": {"type": "string"}},
+                            "views": {"type": "integer", "example": 100},
+                            "likes": {"type": "integer", "example": 50},
+                            "reading_time": {"type": "integer", "example": 5},
+                            "reading_level": {"type": "string", "example": "beginner"},
+                            "rating": {"type": "number", "example": 4.5},
+                            "is_review": {"type": "boolean", "example": false},
+                            "pros": {"type": "array", "items": {"type": "string"}},
+                            "cons": {"type": "array", "items": {"type": "string"}},
+                            "faq": {"type": "array", "items": {"type": "object"}},
+                            "attachments": {"type": "array", "items": {"type": "string"}},
+                            "meta_title": {"type": "string"},
+                            "meta_description": {"type": "string"},
+                            "meta_keywords": {"type": "string"},
+                            "published_at": {"type": "string", "format": "date-time"},
+                            "categories": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {"type": "integer"},
+                                  "title": {"type": "string"},
+                                  "slug": {"type": "string"}
+                                }
+                              }
+                            },
+                            "author": {
+                              "type": "object",
+                              "properties": {
+                                "id": {"type": "integer"},
+                                "first_name": {"type": "string"},
+                                "last_name": {"type": "string"}
+                              }
+                            }
+                          }
+                        },
+                        "similar_posts": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {"type": "integer"},
+                              "title": {"type": "string"},
+                              "slug": {"type": "string"},
+                              "summary": {"type": "string"},
+                              "image": {"type": "string"},
+                              "created_at": {"type": "string", "format": "date-time"}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "پست یافت نشد",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "پست یافت نشد"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "خطای سرور",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean", "example": false},
+                    "message": {"type": "string", "example": "خطا در دریافت اطلاعات پست"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "توکن JWT برای احراز هویت کاربران"
+      },
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "کلید API برای دسترسی به اندپوینتها"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
+}
+

@@ -1,0 +1,46 @@
+.theme-novinlife {
+  /* brand */
+  --color-brand-key: var(--bigStone-key);
+  --color-brand-50: var(--bigStone-50);
+  --color-brand-100: var(--bigStone-100);
+  --color-brand-200: var(--bigStone-200);
+  --color-brand-300: var(--bigStone-300);
+  --color-brand-400: var(--bigStone-400);
+  --color-brand-500: var(--bigStone-500);
+  --color-brand-600: var(--bigStone-600);
+  --color-brand-700: var(--bigStone-700);
+  --color-brand-800: var(--bigStone-800);
+  --color-brand-900: var(--bigStone-900);
+  --color-brand-950: var(--bigStone-950);
+
+  /* primary */
+  --color-primary-key: var(--mineShaft-key);
+  --color-primary-50: var(--mineShaft-50);
+  --color-primary-100: var(--mineShaft-100);
+  --color-primary-200: var(--mineShaft-200);
+  --color-primary-300: var(--mineShaft-300);
+  --color-primary-400: var(--mineShaft-400);
+  --color-primary-500: var(--mineShaft-500);
+  --color-primary-600: var(--mineShaft-600);
+  --color-primary-700: var(--mineShaft-700);
+  --color-primary-800: var(--mineShaft-800);
+  --color-primary-900: var(--mineShaft-900);
+  --color-primary-950: var(--mineShaft-950);
+
+  /* neutral */
+  --color-neutral-key: var(--eastern-blue-key);
+  --color-neutral-50: var(--eastern-blue-50);
+  --color-neutral-100: var(--eastern-blue-100);
+  --color-neutral-200: var(--eastern-blue-200);
+  --color-neutral-300: var(--eastern-blue-300);
+  --color-neutral-400: var(--eastern-blue-400);
+  --color-neutral-500: var(--eastern-blue-500);
+  --color-neutral-600: var(--eastern-blue-600);
+  --color-neutral-700: var(--eastern-blue-700);
+  --color-neutral-800: var(--eastern-blue-800);
+  --color-neutral-900: var(--eastern-blue-900);
+  --color-neutral-950: var(--eastern-blue-950);
+
+  /* background */
+  --color-bg-brightens-700: var(--brightens-700);
+}

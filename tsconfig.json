@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"], // This maps "@" to your baseUrl (project root or src)
+      "@/components/*": ["./components/*"], // Specifically for components if they're directly in root
+      "@/lib/*": ["./lib/*"]
+    }
+  },
+
+  "include": [
+    "types/next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/BPMN/BpmnDiagram.jsx",
+    ".next/dev/types/**/*.ts",
+    "swagger.duc"
+  ],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+@import "../design/styles/root.css";
+@import "../design/styles/classic.css";
+@import "../design/styles/modern.css";
+@import "../design/styles/winki.css";
+@import "../design/styles/novinlife.css";
+@import "../design/styles/index.css";
+@import "../design/fonts/index.css";
+
+* {
+  font-family:
+    "IRANYekan",
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+/* Image placeholder to prevent layout shift */
+.image-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.hide-scrollbar::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+.hide-scrollbar,
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #333232 transparent;
+}
+
+.h-[-webkit-fill-available] {
+  height: -webkit-fill-available;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+}
+
+@keyframes infinite-loop {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: translate(-50%, 100%) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -10%) scale(1.05);
+    opacity: 0.8;
+  }
+  70% {
+    transform: translate(-50%, 5%) scale(0.98);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-bottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-right {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+[data-state="open"].animate-fadeIn {
+  animation: fadeIn 0.15s ease-out both;
+}
+[data-state="closed"].animate-fadeOut {
+  animation: fadeOut 0.15s ease-in both;
+}
+[data-state="open"].animate-scaleIn {
+  animation: scaleIn 0.15s ease-out both;
+}
+[data-state="closed"].animate-scaleOut {
+  animation: scaleOut 0.15s ease-in both;
+}
+
+.animate-infinite-loop {
+  animation: infinite-loop linear infinite;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out both;
+}
+
+.animate-slide-in-bottom {
+  animation: slide-in-bottom 0.3s ease-out both;
+}
+
+.animate-slide-out-right {
+  animation: slide-out-right 0.2s ease-in-out both;
+}
+
+/* Mobile navbar fix — clip به جای hidden تا sticky positioning نشکند */
+body {
+  overflow-x: clip;
+}
+
+/* Leado chat widget mobile bottom spacing */
+@media (max-width: 768px) {
+  /* Target leado chat widget container */
+  #leado-chat-widget,
+  [id*="leado"],
+  [class*="leado"],
+  iframe[src*="leadochat"],
+  iframe[src*="leado"] {
+    margin-bottom: 44px !important;
+    bottom: 44px !important;
+  }
+
+  /* Alternative selectors for leado widget */
+  div[id*="leado-chat"],
+  div[class*="leado-chat"],
+  div[id*="leado-widget"],
+  div[class*="leado-widget"] {
+    margin-bottom: 44px !important;
+    bottom: 44px !important;
+  }
+}
+
+/* Drawer Animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+/* shadows */
+.drop-shadow-custom {
+  box-shadow: 0 4px 12px #7171711f;
+}
+@theme {
+  --breakpoint-desktop: 1282px;
+}
+
+@utility container {
+  @apply mx-auto px-4 max-w-[1300px];
+}
+
+@utility container-none {
+  @apply max-w-none;
+}
+
+@utility container-slider {
+  @apply mx-auto desktop:max-w-[2000px];
+}

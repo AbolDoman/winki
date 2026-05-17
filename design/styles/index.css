@@ -1,0 +1,68 @@
+:root {
+  --font-primary: "IRANYekan";
+
+  /* Body */
+  --text-body-xs: 10px;
+  --text-body-s: 12px;
+  --text-body-m: 14px;
+  --text-body-l: 16px;
+
+  /* Title */
+  --text-title-s: 16px;
+  --text-title-m: 20px;
+  --text-title-l: 24px;
+
+  /* Heading */
+  --text-heading-s: 24px;
+  --text-heading-m: 28px;
+  --text-heading-l: 32px;
+
+  /* Display */
+  --text-display-s: 24px;
+  --text-display-m: 28px;
+  --text-display-l: 32px;
+  --text-display-2xl: 36px;
+}
+
+@utility text-body-xs {
+  font-size: var(--text-body-xs);
+}
+@utility text-body-s {
+  font-size: var(--text-body-s);
+}
+@utility text-body-m {
+  font-size: var(--text-body-m);
+}
+@utility text-body-l {
+  font-size: var(--text-body-l);
+}
+@utility text-title-s {
+  font-size: var(--text-title-s);
+}
+@utility text-title-m {
+  font-size: var(--text-title-m);
+}
+@utility text-title-l {
+  font-size: var(--text-title-l);
+}
+@utility text-heading-s {
+  font-size: var(--text-heading-s);
+}
+@utility text-heading-m {
+  font-size: var(--text-heading-m);
+}
+@utility text-heading-l {
+  font-size: var(--text-heading-l);
+}
+@utility text-display-s {
+  font-size: var(--text-display-s);
+}
+@utility text-display-m {
+  font-size: var(--text-display-m);
+}
+@utility text-display-l {
+  font-size: var(--text-display-l);
+}
+@utility text-display-2xl {
+  font-size: var(--text-display-2xl);
+}
